@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:gravity="bottom|center|top"
+    android:isScrollContainer="true"
+    android:orientation="vertical"
+    android:overScrollMode="ifContentScrolls"
+    android:padding="20dp"
+    android:textAlignment="center"
+    android:weightSum="9"
+    android:theme="@style/UserInterfaceStyle">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:adjustViewBounds="true"
+        android:clickable="false"
+        android:contentDescription="@string/hse_full_name"
+        android:cropToPadding="false"
+        android:focusable="auto"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/ic_hselogo_fullsize"
+        tools:srcCompat="@drawable/ic_hselogo_fullsize" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="@string/hse_full_name"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:autoSizeTextType="none"
+        tools:text="@string/hse_full_name"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/btnForStudents"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        style="@style/ButtonStyle"
+        android:text="@string/timetable_for_students"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/btnForProfessors"
+        android:layout_width="match_parent"
+        style="@style/ButtonStyle"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/timetable_for_professors"
+        />
+
+    <Button
+        android:id="@+id/btnSettings"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:theme="@style/AdditionalButtonStyle"
+        android:text="@string/settings"/>
+
+</LinearLayout>
