@@ -14,9 +14,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/hse_launcher_image"
+        android:icon="@drawable/ic_hselogo_fullsize"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/hse_launcher_image_round"
+        android:roundIcon="@drawable/ic_hselogo_fullsize"
         android:supportsRtl="true"
         android:theme="@style/Theme.TimetableForHSEPE"
         tools:targetApi="31"
@@ -43,6 +43,7 @@
         <activity android:name=".ProfessorActivity"/>
         <activity android:name=".StudentActivity"/>
         <activity android:name=".SettingsActivity"/>
+        <activity android:name=".ScheduleActivity"/>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.android.fileprovider"

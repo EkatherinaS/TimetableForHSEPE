@@ -5,17 +5,29 @@
       <map>
         <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.19" />
         <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/drawable/hse_image.xml" value="0.19" />
+        <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/drawable/ic_hselogo_fullsize.xml" value="0.133" />
+        <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/drawable/ic_hselogo_light.xml" value="0.132" />
         <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/drawable/ic_launcher_background.xml" value="0.121" />
         <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/drawable/profile_img_filler.xml" value="0.1405" />
+        <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/drawable/vertical_separator.xml" value="0.212" />
         <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/layout-land/activity_demo.xml" value="0.2" />
         <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/layout-land/activity_main.xml" value="0.2" />
         <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/layout/activity_demo.xml" value="0.21987315010570824" />
         <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/layout/activity_professor.xml" value="0.4" />
+        <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/layout/activity_schedule.xml" value="0.3059895833333333" />
         <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/layout/activity_settings.xml" value="0.2" />
         <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/layout/activity_student.xml" value="0.264" />
+        <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/layout/ddd.xml" value="0.353494623655914" />
+        <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/layout/item_schedule.xml" value="0.27890625" />
+        <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/layout/item_schedule_header.xml" value="0.27890625" />
+        <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/layout/simple_spinner_dropdown_item.xml" value="0.1" />
+        <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/layout/simple_spinner_item.xml" value="0.1" />
+        <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/menu/menu_basic.xml" value="0.18359375" />
+        <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/menu/menu_schedule.xml" value="0.3734375" />
         <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/mipmap-anydpi-v26/hse_launcher_image.xml" value="0.19" />
         <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/mipmap-anydpi-v26/hse_launcher_image_round.xml" value="0.121" />
+        <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/mipmap-anydpi-v26/hse_launcher_round.xml" value="0.133" />
         <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2265" />
         <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2265" />
         <entry key="..\:/StudyProjects/AndroidStudioProjects/TimetableForHSEPE/app/src/main/res/xml/file_paths.xml" value="0.14650537634408603" />

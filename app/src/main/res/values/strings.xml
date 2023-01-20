@@ -32,4 +32,16 @@
     <string name="currentLux">%1$f lux</string>
     <string name="permissionText">Нужно предоставить права</string>
     <string name="permissionCamera">Для снятия фото нужно предоставить права на фото</string>
+
+    <string name="scheduleHeader">День недели, дата</string>
+    <string name="scheduleStart">10:30</string>
+    <string name="scheduleEnd">11:50</string>
+    <string name="scheduleType">Тип</string>
+    <string name="scheduleName">Название</string>
+    <string name="schedulePlace">Кабинет</string>
+    <string name="scheduleProfessor">Преподаватель</string>
+    <string name="scheduleMonth">Месяц</string>
+    <string name="scheduleTitle">Заголовок</string>
+
+    <string name="iconHSE">HSE</string>
 </resources>

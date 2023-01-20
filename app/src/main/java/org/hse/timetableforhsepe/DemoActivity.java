@@ -15,7 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DemoActivity extends AppCompatActivity {
+public class DemoActivity extends ActionBarActivity {
 
     private TextView result;
     private EditText number;

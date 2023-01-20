@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">#001A72</color>
+    <color name="colorPrimaryVariant">#001859</color>
+    <color name="colorSecondary">#002D89</color>
+    <color name="colorSecondaryVariant">#0043AD</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="colorPrimary">#003399</color>
-    <color name="colorPrimaryVariant">#011F5A</color>
-    <color name="colorSecondary">#4080ff</color>
-    <color name="colorSecondaryVariant">#0C5DFD</color>
+    <color name="gray">#5A5A5A</color>
+    <color name="spaceCadet">#131534</color>
+    <color name="royalBlueDark">#001859</color>
+    <color name="midnightBlue">#001A72</color>
+    <color name="resolutionBlue">#002D89</color>
+    <color name="cobaltBlue">#0043AD</color>
 </resources>

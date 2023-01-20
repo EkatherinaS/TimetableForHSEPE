@@ -28,14 +28,14 @@ import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Random;
 
-public class StudentActivity extends AppCompatActivity {
+public class StudentActivity extends BaseActivity {
 
-    private TextView time;
     private TextView status;
     private TextView subject;
     private TextView cabinet;
     private TextView corp;
     private TextView professor;
+    private Spinner spinner;
     public static final String TAG = "StudentActivity";
 
     @Override
@@ -43,8 +43,7 @@ public class StudentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
 
-        final Spinner spinner = findViewById(R.id.groupList);
-
+        spinner = findViewById(R.id.groupList);
         List<Group> groups = new ArrayList<>();
         initGroupList(groups);
 
@@ -73,13 +72,10 @@ public class StudentActivity extends AppCompatActivity {
         corp = findViewById(R.id.corp);
         professor = findViewById(R.id.professor);
 
-        FloatingActionButton btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                StudentActivity.this.finish();
-            }
-        });
+        View scheduleDay = findViewById(R.id.schedule_day);
+        scheduleDay.setOnClickListener(v -> showSchedule(ScheduleType.DAY));
+        View scheduleWeek = findViewById(R.id.schedule_week);
+        scheduleWeek.setOnClickListener(v -> showSchedule(ScheduleType.WEEK));
 
         initData();
     }
@@ -99,23 +95,6 @@ public class StudentActivity extends AppCompatActivity {
         }
     }
 
-    private void initTime() {
-        Date currentTime = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
-        String result = simpleDateFormat.format(currentTime).toString() + ", " + StringUtils.capitalize(getDayOfWeek().toString());
-        time.setText(result);
-    }
-
-    private String getDayOfWeek() {
-
-        LocalDate date = LocalDate.now();
-        DayOfWeek dayOfWeek = date.getDayOfWeek();
-        System.out.println("dayOfWeek.toString()" + dayOfWeek.toString());
-        Locale localeRu = new Locale("ru", "RU");
-
-        return dayOfWeek.getDisplayName(TextStyle.FULL, localeRu);
-    }
-
     private void initData() {
         status.setText("Нет пар");
         subject.setText("Дисциплина");
@@ -124,34 +103,12 @@ public class StudentActivity extends AppCompatActivity {
         professor.setText("Преподаватель");
     }
 
-    static class Group {
-
-        private Integer id;
-        private String name;
-
-        public Group(Integer id, String name) {
-            this.id = id;
-            this.name = name;
+    private void showSchedule(ScheduleType type) {
+        Object selectedItem = spinner.getSelectedItem();
+        if (!(selectedItem instanceof Group)) {
+            return;
         }
-
-        public Integer getId() {
-            return id;
-        }
-        public void setId(Integer id) {
-            this.id = id;
-        }
-
-        @NonNull
-        @Override
-        public String toString() {
-            return name;
-        }
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
+        showScheduleImpl(ScheduleMode.STUDENT, type, (Group) selectedItem);
     }
+
 }

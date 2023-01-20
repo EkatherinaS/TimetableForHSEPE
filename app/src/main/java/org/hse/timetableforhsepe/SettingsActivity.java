@@ -54,7 +54,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-public class SettingsActivity extends AppCompatActivity implements SensorEventListener {
+public class SettingsActivity extends ActionBarActivity implements SensorEventListener {
     private static final String TAG = "Settings";
     private static int PERMISSION_REQUEST_CODE = 1;
     private static int REQUEST_IMAGE_CAPTURE = 1;
@@ -71,7 +71,7 @@ public class SettingsActivity extends AppCompatActivity implements SensorEventLi
         setContentView(R.layout.activity_settings);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         light = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
-        sensorLight = findViewById(R.id.tvCurrentLux);
+        sensorLight = findViewById(R.id.tvLuxAmount);
 
         preferenceManager = new PreferenceManager(this);
 
@@ -103,14 +103,6 @@ public class SettingsActivity extends AppCompatActivity implements SensorEventLi
         sensorsList.setAdapter(new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, listSensorType));
 
-
-        FloatingActionButton btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SettingsActivity.this.finish();
-            }
-        });
 
         Button saveInfo = findViewById(R.id.btnSave);
         saveInfo.setOnClickListener(new View.OnClickListener() {

@@ -25,13 +25,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-public class ProfessorActivity extends AppCompatActivity {
-    private TextView time;
+public class ProfessorActivity extends BaseActivity {
+
     private TextView status;
     private TextView subject;
     private TextView cabinet;
     private TextView corp;
     private TextView professor;
+    private Spinner spinner;
     public static final String TAG = "ProfessorActivity";
 
 
@@ -40,8 +41,8 @@ public class ProfessorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_professor);
 
-        final Spinner spinner = findViewById(R.id.groupList);
-        List<StudentActivity.Group> groups = new ArrayList<>();
+        spinner = findViewById(R.id.groupList);
+        List<Group> groups = new ArrayList<>();
         initGroupList(groups);
 
         ArrayAdapter<?> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, groups);
@@ -69,40 +70,20 @@ public class ProfessorActivity extends AppCompatActivity {
         corp = findViewById(R.id.corp);
         professor = findViewById(R.id.professor);
 
-        FloatingActionButton btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ProfessorActivity.this.finish();
-            }
-        });
+        View scheduleDay = findViewById(R.id.schedule_day);
+        scheduleDay.setOnClickListener(v -> showSchedule(ScheduleType.DAY));
+        View scheduleWeek = findViewById(R.id.schedule_week);
+        scheduleWeek.setOnClickListener(v -> showSchedule(ScheduleType.WEEK));
 
         initData();
     }
 
-    private void initGroupList(List<StudentActivity.Group> groups) {
+    private void initGroupList(List<Group> groups) {
         Random rand = new Random();
         String professor = "Преподаватель ";
         for (int i = 0; i < rand.nextInt(10) + 1; i++) {
-            groups.add(new StudentActivity.Group(i, professor + (i + 1)));
+            groups.add(new Group(i, professor + (i + 1)));
         }
-    }
-
-    private void initTime() {
-        Date currentTime = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
-        String result = simpleDateFormat.format(currentTime).toString() + ", " + StringUtils.capitalize(getDayOfWeek().toString());
-        time.setText(result);
-    }
-
-    private String getDayOfWeek() {
-
-        LocalDate date = LocalDate.now();
-        DayOfWeek dayOfWeek = date.getDayOfWeek();
-        System.out.println("dayOfWeek.toString()" + dayOfWeek.toString());
-        Locale localeRu = new Locale("ru", "RU");
-
-        return dayOfWeek.getDisplayName(TextStyle.FULL, localeRu);
     }
 
     private void initData() {
@@ -111,5 +92,13 @@ public class ProfessorActivity extends AppCompatActivity {
         cabinet.setText("Кабинет");
         corp.setText("Корпус");
         professor.setText("Преподаватель");
+    }
+
+    private void showSchedule(ScheduleType type) {
+        Object selectedItem = spinner.getSelectedItem();
+        if (!(selectedItem instanceof Group)) {
+            return;
+        }
+        showScheduleImpl(ScheduleMode.PROFESSOR, type, (Group) selectedItem);
     }
 }
