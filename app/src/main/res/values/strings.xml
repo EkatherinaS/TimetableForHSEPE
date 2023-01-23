@@ -1,4 +1,10 @@
 <resources>
+    <string name="demo_activity_warning_1">Число не должно превышать 10000</string>
+    <string name="demo_activity_warning_2">Число не должно превышать 19</string>
+    <string name="demo_activity_result">Result: %d</string>
+
+    <string name="image_name">profile_photo</string>
+
     <string name="app_name">Timetable for HSE PE</string>
     <string name="timetable_for_students">Расписание для студентов</string>
     <string name="timetable_for_professors">Расписание для преподавателей</string>
@@ -8,17 +14,18 @@
     <string name="btnSum">Сумма</string>
     <string name="btnMultiplyEven">Произведение четных</string>
     <string name="enter_a_number">Введите число</string>
-    <string name="back">назад</string>
 
     <string name="groupChoice">Выберите группу:</string>
     <string name="professorChoice">Выберите преподавателя:</string>
     <string name="nowText">Сейчас: </string>
     <string name="todayDate">время, День недели </string>
-    <string name="stubStatus">Идет пара/нет пар</string>
+    <string name="stubStatus">Нет пар</string>
+    <string name="stubStatusRunning">Идет пара</string>
     <string name="stubSubject">Дисциплина</string>
     <string name="stubCabinet">Кабинет</string>
     <string name="stubCorp">Корпус</string>
     <string name="stubProfessor">Преподаватель</string>
+    <string name="stubGroup">Группа</string>
     <string name="btnDayTimetable">Расписание\nна день</string>
     <string name="btnWeekTimetable">Расписание\nна неделю</string>
 
@@ -40,8 +47,11 @@
     <string name="scheduleName">Название</string>
     <string name="schedulePlace">Кабинет</string>
     <string name="scheduleProfessor">Преподаватель</string>
-    <string name="scheduleMonth">Месяц</string>
     <string name="scheduleTitle">Заголовок</string>
 
+    <string name="typePractice">Практическое занятие</string>
+    <string name="typeLection">Лекция</string>
+
     <string name="iconHSE">HSE</string>
+    <string name="urlTime">https://api.ipgeolocation.io/ipgeo?apiKey=b03018f75ed94023a005637878ec0977</string>
 </resources>

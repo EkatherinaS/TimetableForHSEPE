@@ -32,18 +32,18 @@
                 android:resource="@xml/file_paths"/>
         </provider>
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DemoActivity"/>
-        <activity android:name=".ProfessorActivity"/>
-        <activity android:name=".StudentActivity"/>
-        <activity android:name=".SettingsActivity"/>
-        <activity android:name=".ScheduleActivity"/>
+        <activity android:name=".view.DemoActivity"/>
+        <activity android:name=".view.TeacherActivity"/>
+        <activity android:name=".view.StudentActivity"/>
+        <activity android:name=".view.SettingsActivity"/>
+        <activity android:name=".view.ScheduleActivity"/>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.android.fileprovider"
