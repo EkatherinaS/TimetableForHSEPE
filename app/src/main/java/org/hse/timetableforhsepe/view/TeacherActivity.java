@@ -11,9 +11,9 @@ import android.widget.TextView;
 import androidx.lifecycle.Observer;
 
 import org.hse.timetableforhsepe.R;
+import org.hse.timetableforhsepe.model.FullTimeTableEntity;
 import org.hse.timetableforhsepe.model.TeacherEntity;
 import org.hse.timetableforhsepe.model.TimeTableEntity;
-import org.hse.timetableforhsepe.model.TimeTableWithGroupEntity;
 import org.hse.timetableforhsepe.view_model.Item;
 
 import java.util.ArrayList;
@@ -93,23 +93,23 @@ public class TeacherActivity extends BaseActivity {
 
     @Override
     protected void showTime(Date dateTime) {
-        super.showTime(dateTime);
-        Observer<? super List<TimeTableWithGroupEntity>> observer = (Observer<List<TimeTableWithGroupEntity>>) list -> {
-            for (TimeTableWithGroupEntity listEntity : list) {
-                Log.d(TAG, listEntity.timeTableEntity.subName + " " + listEntity.groupEntity.name);
-                if (getSelectedItem() != null && getSelectedItem().getId().equals(listEntity.timeTableEntity.teacherId)) {
+        if (getSelectedItem() != null) {
+            super.showTime(dateTime);
+            Observer<? super List<FullTimeTableEntity>> observer = (Observer<List<FullTimeTableEntity>>) list -> {
+                for (FullTimeTableEntity listEntity : list) {
+                    Log.d(TAG, listEntity.timeTableEntity.subName + " " + listEntity.groupEntity.name);
                     initDataFromTimeTable(listEntity);
                 }
-            }
-        };
-        mainViewModel.getTimeTableWithGroupByDate(dateTime).observe(this, observer);
+            };
+            mainViewModel.getTimetableByTeacherId(getSelectedItem().getId(), ScheduleType.DAY).observe(this, observer);
+        }
     }
 
     private Item getSelectedItem() {
         return (Item) spinner.getSelectedItem();
     }
 
-    private void initDataFromTimeTable(TimeTableWithGroupEntity timeTableWithGroupEntity) {
+    private void initDataFromTimeTable(FullTimeTableEntity timeTableWithGroupEntity) {
         if (timeTableWithGroupEntity == null) {
             status.setText(R.string.stubStatus);
 

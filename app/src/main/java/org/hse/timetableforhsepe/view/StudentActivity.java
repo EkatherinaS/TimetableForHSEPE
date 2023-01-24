@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.lifecycle.Observer;
 
+import org.hse.timetableforhsepe.model.FullTimeTableEntity;
 import org.hse.timetableforhsepe.model.GroupEntity;
 import org.hse.timetableforhsepe.R;
 import org.hse.timetableforhsepe.model.TimeTableEntity;
@@ -93,22 +94,23 @@ public class StudentActivity extends BaseActivity {
     @Override
     protected void showTime(Date dateTime) {
         super.showTime(dateTime);
-        Observer<? super List<TimeTableWithTeacherEntity>> observer = (Observer<List<TimeTableWithTeacherEntity>>) list -> {
-            for (TimeTableWithTeacherEntity listEntity : list) {
-                Log.d(TAG, listEntity.timeTableEntity.subName + " " + listEntity.teacherEntity.fio);
-                if (getSelectedItem() != null && getSelectedItem().getId().equals(listEntity.timeTableEntity.groupId)) {
-                    initDataFromTimeTable(listEntity);
-                }
-            }
-        };
-        mainViewModel.getTimeTableWithTeacherByDate(dateTime).observe(this, observer);
+        if (getSelectedItem() != null) {
+            Observer<? super List<FullTimeTableEntity>> observer = (Observer<List<FullTimeTableEntity>>) list -> {
+
+                for (FullTimeTableEntity listEntity : list) {
+                    Log.d(TAG, listEntity.timeTableEntity.subName + " " + listEntity.teacherEntity.fio);
+                        initDataFromTimeTable(listEntity);
+                    }
+            };
+            mainViewModel.getTimetableByGroupId(getSelectedItem().getId(), ScheduleType.DAY).observe(this, observer);
+        }
     }
 
     private Item getSelectedItem() {
         return (Item) spinner.getSelectedItem();
     }
 
-    private void initDataFromTimeTable(TimeTableWithTeacherEntity timeTableWithTeacherEntity) {
+    private void initDataFromTimeTable(FullTimeTableEntity timeTableWithTeacherEntity) {
         if (timeTableWithTeacherEntity == null) {
             status.setText(R.string.stubStatus);
 

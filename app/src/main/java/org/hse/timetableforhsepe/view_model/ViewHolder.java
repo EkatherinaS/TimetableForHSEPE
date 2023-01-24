@@ -24,18 +24,25 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         this.onItemClick = onItemClick;
         start = itemView.findViewById(R.id.start);
         end = itemView.findViewById(R.id.end);
-        type = itemView.findViewById(R.id.type);
         name = itemView.findViewById(R.id.name);
         place = itemView.findViewById(R.id.place);
+        type = itemView.findViewById(R.id.type);
         addInfo = itemView.findViewById(R.id.additional_info);
     }
 
     public void bind(final ScheduleItem data) {
         start.setText(data.getStart());
         end.setText(data.getEnd());
-        type.setText(data.getType());
         name.setText(data.getName());
         place.setText(data.getPlace());
         addInfo.setText(data.getAddInfo());
+        switch (data.getType()) {
+            case 0:
+                type.setText(R.string.typePractice);
+                break;
+            case 1:
+                type.setText(R.string.typeLection);;
+                break;
+        }
     }
 }

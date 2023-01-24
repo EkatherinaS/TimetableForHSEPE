@@ -24,7 +24,7 @@ public class Converters {
         return date == null ? null : date.getTime();
     }
 
-    @TypeConverter
+
     public static Date dateToFullFormat(String date) throws ParseException {
         SimpleDateFormat fullDateFormat =
                 new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault());

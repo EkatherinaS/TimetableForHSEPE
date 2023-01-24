@@ -14,6 +14,7 @@ import org.hse.timetableforhsepe.model.TimeTableEntity;
 import org.hse.timetableforhsepe.model.TimeTableWithGroupEntity;
 import org.hse.timetableforhsepe.model.TimeTableWithTeacherEntity;
 
+import java.util.Date;
 import java.util.List;
 
 @Dao
@@ -41,6 +42,12 @@ public interface HseDao {
 
     @Query("SELECT * FROM time_table")
     LiveData<List<FullTimeTableEntity>> getAllTimeTable();
+
+    @Query("SELECT * FROM time_table WHERE teacher_id = :id AND time_start >= :start_day AND time_start <= :end_day")
+    LiveData<List<FullTimeTableEntity>> getTimeTableByTeacherId(Integer id, Date start_day, Date end_day);
+
+    @Query("SELECT * FROM time_table WHERE group_id = :id AND time_start >= :start_day AND time_start <= :end_day")
+    LiveData<List<FullTimeTableEntity>> getTimeTableByGroupId(Integer id, Date start_day, Date end_day);
 
     @Transaction
     @Query("SELECT * FROM time_table")

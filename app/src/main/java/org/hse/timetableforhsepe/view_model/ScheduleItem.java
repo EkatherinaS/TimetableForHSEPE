@@ -1,31 +1,29 @@
 package org.hse.timetableforhsepe.view_model;
 
+import android.app.Application;
+import android.content.Context;
+import android.content.res.Resources;
+
+import org.hse.timetableforhsepe.R;
 import org.hse.timetableforhsepe.model.Converters;
 import org.hse.timetableforhsepe.model.FullTimeTableEntity;
 import org.hse.timetableforhsepe.view.BaseActivity;
 
-public class ScheduleItem {
+public class ScheduleItem extends Application {
 
     private String start;
     private String end;
-    private String type;
     private String name;
     private String place;
     private String addInfo;
+    private int type;
 
     public ScheduleItem() { ; }
 
     public ScheduleItem(FullTimeTableEntity entity, BaseActivity.ScheduleMode mode) {
         this.start = Converters.dateToTimeFormat(entity.timeTableEntity.timeStart);
         this.end = Converters.dateToTimeFormat(entity.timeTableEntity.timeEnd);
-        switch (entity.timeTableEntity.type) {
-            case 0:
-                this.type = "Практическое занятие";
-                break;
-            case 1:
-                this.type = "Лекция";
-                break;
-        }
+        this.type = entity.timeTableEntity.type;
         this.name = entity.timeTableEntity.subName;
         this.place = entity.timeTableEntity.cabinet + " [" + entity.timeTableEntity.corp + "]";
         if(mode == BaseActivity.ScheduleMode.PROFESSOR) {
@@ -41,7 +39,7 @@ public class ScheduleItem {
 
     public String getEnd() { return this.end; }
 
-    public String getType() { return this.type; }
+    public int getType() { return this.type; }
 
     public String getName() { return this.name; }
 
@@ -54,7 +52,7 @@ public class ScheduleItem {
 
     public void setEnd ( String end ) { this.end = end; }
 
-    public void setType ( String type ) { this.type = type; }
+    public void setType ( int type ) { this.type = type; }
 
     public void setName ( String name ) { this.name = name; }
 

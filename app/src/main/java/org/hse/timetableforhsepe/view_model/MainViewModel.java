@@ -15,10 +15,12 @@ import org.hse.timetableforhsepe.R;
 import org.hse.timetableforhsepe.model.Converters;
 import org.hse.timetableforhsepe.model.FullTimeTableEntity;
 import org.hse.timetableforhsepe.model.GroupEntity;
+import org.hse.timetableforhsepe.model.RequestBuilder;
 import org.hse.timetableforhsepe.model.TeacherEntity;
 import org.hse.timetableforhsepe.model.TimeTableEntity;
 import org.hse.timetableforhsepe.model.TimeTableWithGroupEntity;
 import org.hse.timetableforhsepe.model.TimeTableWithTeacherEntity;
+import org.hse.timetableforhsepe.view.BaseActivity;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -38,8 +40,6 @@ public class MainViewModel extends AndroidViewModel {
     private HseRepository repository;
 
     private final static String TAG = "BaseActivity";
-    public final static String URL = "https://api.ipgeolocation.io/ipgeo?apiKey=b03018f75ed94023a005637878ec0977";
-    private final OkHttpClient client = new OkHttpClient();
     public static Date date;
 
     public MainViewModel(@NonNull Application application) {
@@ -48,40 +48,10 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public LiveData<Date> getTime() {
-        Request request = new Request.Builder().url(URL).build();
-        Call call = client.newCall(request);
+        date = RequestBuilder.getDate();
         MutableLiveData<Date> liveData = new MutableLiveData<>();
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.e(TAG, "", e);
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                parseResponse(response);
-                liveData.postValue(date);
-            }
-        });
+        liveData.postValue(date);
         return liveData;
-    }
-
-    private void parseResponse(Response response) {
-        Gson gson = new Gson();
-        ResponseBody body = response.body();
-        try {
-            if (body == null) {
-                return;
-            }
-            String string = body.string();
-            Log.d(TAG, string);
-            TimeResponse timeResponse = gson.fromJson(string, TimeResponse.class);
-            String currentTimeVal = timeResponse.getTimeZone().getCurrentTime();
-            date = Converters.dateToFullFormat(currentTimeVal);
-        }
-        catch (Exception e) {
-            Log.e(TAG, "", e);
-        }
     }
 
     public LiveData<List<GroupEntity>> getGroups() {
@@ -90,6 +60,14 @@ public class MainViewModel extends AndroidViewModel {
 
     public LiveData<List<TeacherEntity>> getTeachers() {
         return repository.getTeachers();
+    }
+
+    public LiveData<List<FullTimeTableEntity>> getTimetableByGroupId(Integer id, BaseActivity.ScheduleType type) {
+        return repository.getTimetableByGroupId(id, type);
+    }
+
+    public LiveData<List<FullTimeTableEntity>> getTimetableByTeacherId(Integer id, BaseActivity.ScheduleType type) {
+        return repository.getTimetableByTeacherId(id, type);
     }
 
     public LiveData<List<FullTimeTableEntity>> getTimetable() {
