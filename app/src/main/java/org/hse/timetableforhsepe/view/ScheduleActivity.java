@@ -1,7 +1,6 @@
 package org.hse.timetableforhsepe.view;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -12,23 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.hse.timetableforhsepe.model.Converters;
 import org.hse.timetableforhsepe.model.FullTimeTableEntity;
-import org.hse.timetableforhsepe.model.TimeTableEntity;
-import org.hse.timetableforhsepe.model.TimeTableWithTeacherEntity;
-import org.hse.timetableforhsepe.view_model.HseRepository;
 import org.hse.timetableforhsepe.view_model.ItemAdapter;
 import org.hse.timetableforhsepe.R;
-import org.hse.timetableforhsepe.view_model.MainViewModel;
 import org.hse.timetableforhsepe.view_model.ScheduleItem;
 import org.hse.timetableforhsepe.view_model.ScheduleItemHeader;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.ConcurrentModificationException;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
 
 
 public class ScheduleActivity extends BaseActivity {
@@ -108,7 +98,6 @@ public class ScheduleActivity extends BaseActivity {
         if (mode == ScheduleMode.PROFESSOR) {
             mainViewModel.getTimetableByTeacherId(id, type).observe(this, observer);
         }
-
     }
 
     protected void initData(List<ScheduleItem> items) {

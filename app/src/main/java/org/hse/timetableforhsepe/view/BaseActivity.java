@@ -32,7 +32,7 @@ public abstract class BaseActivity extends ActionBarActivity {
                 showTime(date);
             }
         };
-        mainViewModel.getTime().observe(this, observer);
+        mainViewModel.getDate().observe(this, observer);
     }
 
     protected void showTime(Date dateTime) {

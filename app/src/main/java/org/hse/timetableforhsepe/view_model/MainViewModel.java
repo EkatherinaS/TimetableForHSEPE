@@ -39,19 +39,33 @@ public class MainViewModel extends AndroidViewModel {
 
     private HseRepository repository;
 
+    private MutableLiveData<Date> date = new MutableLiveData<>();
+
     private final static String TAG = "BaseActivity";
-    public static Date date;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
         repository = new HseRepository(application);
     }
 
-    public LiveData<Date> getTime() {
-        date = RequestBuilder.getDate();
-        MutableLiveData<Date> liveData = new MutableLiveData<>();
-        liveData.postValue(date);
-        return liveData;
+    public void getTime() {
+        repository.getTime(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e(TAG, "", e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+               Date dateVal = parseResponse(response);
+               date.postValue(dateVal);
+            }
+        });
+    }
+
+    public MutableLiveData<Date> getDate() {
+        getTime();
+        return date;
     }
 
     public LiveData<List<GroupEntity>> getGroups() {
@@ -60,6 +74,14 @@ public class MainViewModel extends AndroidViewModel {
 
     public LiveData<List<TeacherEntity>> getTeachers() {
         return repository.getTeachers();
+    }
+
+    public LiveData<List<FullTimeTableEntity>> getLessonByGroupId(Integer id) {
+        return repository.getLessonByGroupId(id);
+    }
+
+    public LiveData<List<FullTimeTableEntity>> getLessonByTeacherId(Integer id) {
+        return repository.getLessonByTeacherId(id);
     }
 
     public LiveData<List<FullTimeTableEntity>> getTimetableByGroupId(Integer id, BaseActivity.ScheduleType type) {
@@ -81,5 +103,24 @@ public class MainViewModel extends AndroidViewModel {
     public LiveData<List<TimeTableWithGroupEntity>> getTimeTableWithGroupByDate(Date date) {
         return repository.getTimeTableWithGroupByDate(date);
     }
+
+    private Date parseResponse(Response response) {
+        Gson gson = new Gson();
+        ResponseBody body = response.body();
+        try {
+            if (body == null) {
+                return null;
+            }
+            String string = body.string();
+            Log.d(TAG, string);
+            TimeResponse timeResponse = gson.fromJson(string, TimeResponse.class);
+            String currentTimeVal = timeResponse.getTimeZone().getCurrentTime();
+            return Converters.dateToFullFormat(currentTimeVal);
+        } catch (Exception e) {
+            Log.e(TAG, "", e);
+        }
+        return null;
+    }
+
 
 }

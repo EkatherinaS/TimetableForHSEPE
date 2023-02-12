@@ -93,15 +93,15 @@ public class TeacherActivity extends BaseActivity {
 
     @Override
     protected void showTime(Date dateTime) {
+        super.showTime(dateTime);
         if (getSelectedItem() != null) {
-            super.showTime(dateTime);
             Observer<? super List<FullTimeTableEntity>> observer = (Observer<List<FullTimeTableEntity>>) list -> {
-                for (FullTimeTableEntity listEntity : list) {
-                    Log.d(TAG, listEntity.timeTableEntity.subName + " " + listEntity.groupEntity.name);
-                    initDataFromTimeTable(listEntity);
+                if (!list.isEmpty()) {
+                    Log.d(TAG, list.get(0).timeTableEntity.subName + " " + list.get(0).groupEntity.name);
+                    initDataFromTimeTable(list.get(0));
                 }
             };
-            mainViewModel.getTimetableByTeacherId(getSelectedItem().getId(), ScheduleType.DAY).observe(this, observer);
+            mainViewModel.getLessonByTeacherId(getSelectedItem().getId()).observe(this, observer);
         }
     }
 

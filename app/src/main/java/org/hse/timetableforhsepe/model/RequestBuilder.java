@@ -25,43 +25,15 @@ public class RequestBuilder {
     private final static String TAG = "RequestBuilder";
     private static Date date = null;
 
-    public static Date getDate() {
-        getTime();
-        return date;
+    public static void getDate(Callback callback) {
+        getTime(callback);
     }
 
-    private static void getTime() {
+    private static void getTime(Callback callback) {
         Request request = new Request.Builder().url(URL).build();
         OkHttpClient client = new OkHttpClient();
         Call call = client.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.e(TAG, "", e);
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                parseResponse(response);
-            }
-        });
+        call.enqueue(callback);
     }
 
-    private static void parseResponse(Response response) {
-        Gson gson = new Gson();
-        ResponseBody body = response.body();
-        try {
-            if (body == null) {
-                return;
-            }
-            String string = body.string();
-            Log.d(TAG, string);
-            TimeResponse timeResponse = gson.fromJson(string, TimeResponse.class);
-            String currentTimeVal = timeResponse.getTimeZone().getCurrentTime();
-            date = Converters.dateToFullFormat(currentTimeVal);
-        }
-        catch (Exception e) {
-            Log.e(TAG, "", e);
-        }
-    }
 }

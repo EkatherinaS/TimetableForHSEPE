@@ -43,6 +43,12 @@ public interface HseDao {
     @Query("SELECT * FROM time_table")
     LiveData<List<FullTimeTableEntity>> getAllTimeTable();
 
+    @Query("SELECT * FROM time_table WHERE teacher_id = :id AND time_start <= :current_time AND time_end >= :current_time")
+    LiveData<List<FullTimeTableEntity>> getLessonByTeacherId(Integer id, Date current_time);
+
+    @Query("SELECT * FROM time_table WHERE group_id = :id AND time_start <= :current_time AND time_end >= :current_time")
+    LiveData<List<FullTimeTableEntity>> getLessonByGroupId(Integer id, Date current_time);
+
     @Query("SELECT * FROM time_table WHERE teacher_id = :id AND time_start >= :start_day AND time_start <= :end_day")
     LiveData<List<FullTimeTableEntity>> getTimeTableByTeacherId(Integer id, Date start_day, Date end_day);
 

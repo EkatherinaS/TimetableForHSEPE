@@ -96,13 +96,12 @@ public class StudentActivity extends BaseActivity {
         super.showTime(dateTime);
         if (getSelectedItem() != null) {
             Observer<? super List<FullTimeTableEntity>> observer = (Observer<List<FullTimeTableEntity>>) list -> {
-
-                for (FullTimeTableEntity listEntity : list) {
-                    Log.d(TAG, listEntity.timeTableEntity.subName + " " + listEntity.teacherEntity.fio);
-                        initDataFromTimeTable(listEntity);
-                    }
+                if (!list.isEmpty()) {
+                    Log.d(TAG, list.get(0).timeTableEntity.subName + " " + list.get(0).teacherEntity.fio);
+                    initDataFromTimeTable(list.get(0));
+                }
             };
-            mainViewModel.getTimetableByGroupId(getSelectedItem().getId(), ScheduleType.DAY).observe(this, observer);
+            mainViewModel.getLessonByGroupId(getSelectedItem().getId()).observe(this, observer);
         }
     }
 

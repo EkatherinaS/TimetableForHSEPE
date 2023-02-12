@@ -3,6 +3,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        upload {
+            storeFile file('C:\\Users\\Ekaterina\\keystores\\upload-keystore.jks')
+            storePassword '30722014'
+            keyAlias 'upload-key'
+            keyPassword '30722014'
+        }
+    }
     compileSdk 32
 
     defaultConfig {
@@ -13,11 +21,13 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.upload
     }
 
     buildTypes {
         release {
             minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
