@@ -1,8 +1,10 @@
 package org.hse.timetableforhsepe.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
@@ -12,6 +14,7 @@ import org.hse.timetableforhsepe.model.Converters;
 import org.hse.timetableforhsepe.view_model.Item;
 import org.hse.timetableforhsepe.view_model.MainViewModel;
 import java.util.Date;
+import java.util.Objects;
 
 public abstract class BaseActivity extends ActionBarActivity {
 

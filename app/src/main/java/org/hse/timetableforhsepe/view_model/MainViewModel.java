@@ -1,8 +1,10 @@
 package org.hse.timetableforhsepe.view_model;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.res.Resources;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -23,6 +25,7 @@ import org.hse.timetableforhsepe.model.TimeTableWithTeacherEntity;
 import org.hse.timetableforhsepe.view.BaseActivity;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -57,8 +60,9 @@ public class MainViewModel extends AndroidViewModel {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-               Date dateVal = parseResponse(response);
-               date.postValue(dateVal);
+                Date dateVal = null;
+                dateVal = parseResponse(response);
+                date.postValue(dateVal);
             }
         });
     }
@@ -114,6 +118,7 @@ public class MainViewModel extends AndroidViewModel {
             String string = body.string();
             Log.d(TAG, string);
             TimeResponse timeResponse = gson.fromJson(string, TimeResponse.class);
+            Log.d(TAG, timeResponse.toString());
             String currentTimeVal = timeResponse.getTimeZone().getCurrentTime();
             return Converters.dateToFullFormat(currentTimeVal);
         } catch (Exception e) {

@@ -87,8 +87,8 @@ public class DatabaseManager {
         timeTable.subName = "Философия";
         timeTable.corp = "К1";
         timeTable.type = 0;
-        timeTable.timeStart = dateFromString("2023-02-11 8:00");
-        timeTable.timeEnd = dateFromString("2023-02-11 10:00");
+        timeTable.timeStart = dateFromString("2023-02-12 19:00");
+        timeTable.timeEnd = dateFromString("2023-02-12 22:00");
         timeTable.groupId = 1;
         timeTable.teacherId = 1;
         timeTables.add(timeTable);
@@ -123,8 +123,8 @@ public class DatabaseManager {
         timeTable.subName = "Мобильная разработка";
         timeTable.corp = "К1";
         timeTable.type = 0;
-        timeTable.timeStart = dateFromString("2023-02-10 13:00");
-        timeTable.timeEnd = dateFromString("2023-02-10 15:00");
+        timeTable.timeStart = dateFromString("2023-02-12 15:00");
+        timeTable.timeEnd = dateFromString("2023-02-12 18:00");
         timeTable.groupId = 2;
         timeTable.teacherId = 2;
         timeTables.add(timeTable);
