@@ -40,11 +40,8 @@ public class HseRepository {
     private HseDao dao;
     private Date dayStart;
     private Date dayEnd;
-    private Date currentTime;
-    private RequestBuilder requestBuilder;
 
-    private void getDates(BaseActivity.ScheduleType type) {
-        currentTime = BaseActivity.currentTime;
+    private void getDates(BaseActivity.ScheduleType type, Date currentTime) {
         if (currentTime != null) {
             LocalDate localDate = currentTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             if (type == BaseActivity.ScheduleType.DAY) {
@@ -80,23 +77,21 @@ public class HseRepository {
         dao = databaseManager.getHseDao();
     }
 
-    public LiveData<List<FullTimeTableEntity>> getTimetableByGroupId(Integer groupId, BaseActivity.ScheduleType type) {
-        getDates(type);
+    public LiveData<List<FullTimeTableEntity>> getTimetableByGroupId(Integer groupId, BaseActivity.ScheduleType type, Date date) {
+        getDates(type, date);
         return dao.getTimeTableByGroupId(groupId, dayStart, dayEnd);
     }
 
-    public LiveData<List<FullTimeTableEntity>> getTimetableByTeacherId(Integer teacherId, BaseActivity.ScheduleType type) {
-        getDates(type);
+    public LiveData<List<FullTimeTableEntity>> getTimetableByTeacherId(Integer teacherId, BaseActivity.ScheduleType type, Date date) {
+        getDates(type, date);
         return dao.getTimeTableByTeacherId(teacherId, dayStart, dayEnd);
     }
 
-    public LiveData<List<FullTimeTableEntity>> getLessonByGroupId(Integer groupId) {
-        currentTime = BaseActivity.currentTime;
+    public LiveData<List<FullTimeTableEntity>> getLessonByGroupId(Integer groupId, Date currentTime) {
         return dao.getLessonByGroupId(groupId, currentTime);
     }
 
-    public LiveData<List<FullTimeTableEntity>> getLessonByTeacherId(Integer teacherId) {
-        currentTime = BaseActivity.currentTime;
+    public LiveData<List<FullTimeTableEntity>> getLessonByTeacherId(Integer teacherId, Date currentTime) {
         return dao.getLessonByTeacherId(teacherId, currentTime);
     }
 
@@ -112,11 +107,11 @@ public class HseRepository {
         return dao.getAllTeacher();
     }
 
-    public LiveData<List<TimeTableWithTeacherEntity>> getTimeTableWithTeacherByDate(Date date) {
+    public LiveData<List<TimeTableWithTeacherEntity>> getTimeTableWithTeacherByDate() {
         return dao.getTimeTableTeacher();
     }
 
-    public LiveData<List<TimeTableWithGroupEntity>> getTimeTableWithGroupByDate(Date date) {
+    public LiveData<List<TimeTableWithGroupEntity>> getTimeTableWithGroupByDate() {
         return dao.getTimeTableGroup();
     }
 

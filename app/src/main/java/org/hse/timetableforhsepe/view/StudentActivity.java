@@ -101,7 +101,7 @@ public class StudentActivity extends BaseActivity {
                     initDataFromTimeTable(list.get(0));
                 }
             };
-            mainViewModel.getLessonByGroupId(getSelectedItem().getId()).observe(this, observer);
+            mainViewModel.getLessonByGroupId(getSelectedItem().getId(), currentTime).observe(this, observer);
         }
     }
 

@@ -93,10 +93,10 @@ public class ScheduleActivity extends BaseActivity {
         };
 
         if (mode == ScheduleMode.STUDENT) {
-            mainViewModel.getTimetableByGroupId(id, type).observe(this, observer);
+            mainViewModel.getTimetableByGroupId(id, type, currentTime).observe(this, observer);
         }
         if (mode == ScheduleMode.PROFESSOR) {
-            mainViewModel.getTimetableByTeacherId(id, type).observe(this, observer);
+            mainViewModel.getTimetableByTeacherId(id, type, currentTime).observe(this, observer);
         }
     }
 

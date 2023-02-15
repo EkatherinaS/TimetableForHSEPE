@@ -80,32 +80,32 @@ public class MainViewModel extends AndroidViewModel {
         return repository.getTeachers();
     }
 
-    public LiveData<List<FullTimeTableEntity>> getLessonByGroupId(Integer id) {
-        return repository.getLessonByGroupId(id);
+    public LiveData<List<FullTimeTableEntity>> getLessonByGroupId(Integer id, Date currentTime) {
+        return repository.getLessonByGroupId(id, currentTime);
     }
 
-    public LiveData<List<FullTimeTableEntity>> getLessonByTeacherId(Integer id) {
-        return repository.getLessonByTeacherId(id);
+    public LiveData<List<FullTimeTableEntity>> getLessonByTeacherId(Integer id, Date currentTime) {
+        return repository.getLessonByTeacherId(id, currentTime);
     }
 
-    public LiveData<List<FullTimeTableEntity>> getTimetableByGroupId(Integer id, BaseActivity.ScheduleType type) {
-        return repository.getTimetableByGroupId(id, type);
+    public LiveData<List<FullTimeTableEntity>> getTimetableByGroupId(Integer id, BaseActivity.ScheduleType type, Date date) {
+        return repository.getTimetableByGroupId(id, type, date);
     }
 
-    public LiveData<List<FullTimeTableEntity>> getTimetableByTeacherId(Integer id, BaseActivity.ScheduleType type) {
-        return repository.getTimetableByTeacherId(id, type);
+    public LiveData<List<FullTimeTableEntity>> getTimetableByTeacherId(Integer id, BaseActivity.ScheduleType type, Date date) {
+        return repository.getTimetableByTeacherId(id, type, date);
     }
 
     public LiveData<List<FullTimeTableEntity>> getTimetable() {
         return repository.getTimetable();
     }
 
-    public LiveData<List<TimeTableWithTeacherEntity>> getTimeTableWithTeacherByDate(Date date) {
-        return repository.getTimeTableWithTeacherByDate(date);
+    public LiveData<List<TimeTableWithTeacherEntity>> getTimeTableWithTeacherByDate() {
+        return repository.getTimeTableWithTeacherByDate();
     }
 
-    public LiveData<List<TimeTableWithGroupEntity>> getTimeTableWithGroupByDate(Date date) {
-        return repository.getTimeTableWithGroupByDate(date);
+    public LiveData<List<TimeTableWithGroupEntity>> getTimeTableWithGroupByDate() {
+        return repository.getTimeTableWithGroupByDate();
     }
 
     private Date parseResponse(Response response) {

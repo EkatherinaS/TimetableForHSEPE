@@ -101,7 +101,7 @@ public class TeacherActivity extends BaseActivity {
                     initDataFromTimeTable(list.get(0));
                 }
             };
-            mainViewModel.getLessonByTeacherId(getSelectedItem().getId()).observe(this, observer);
+            mainViewModel.getLessonByTeacherId(getSelectedItem().getId(), currentTime).observe(this, observer);
         }
     }
 
