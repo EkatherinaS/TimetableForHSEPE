@@ -20,7 +20,7 @@ public abstract class BaseActivity extends ActionBarActivity {
 
     protected TextView time;
     protected MainViewModel mainViewModel;
-    public static Date currentTime;
+    public Date currentTime;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
