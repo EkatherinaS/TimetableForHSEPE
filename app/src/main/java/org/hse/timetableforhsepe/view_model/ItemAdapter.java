@@ -1,6 +1,5 @@
 package org.hse.timetableforhsepe.view_model;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

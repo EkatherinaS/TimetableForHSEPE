@@ -28,7 +28,7 @@ public class PreferenceManager {
     }
 
     public String getPhotoPATH(){
-        return getValue(PHOTO_PATH, "");//@drawable/profile_picture_basic");
+        return getValue(PHOTO_PATH, "");
     }
 
     private void saveValue(String key, String value) {

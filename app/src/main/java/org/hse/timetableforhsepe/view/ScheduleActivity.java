@@ -1,9 +1,11 @@
 package org.hse.timetableforhsepe.view;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,22 +30,22 @@ public class ScheduleActivity extends BaseActivity {
     public static String ARG_MODE = "ARG_MODE";
     public static String ARG_NAME = "ARG_NAME";
     private static final int DEFAULT_ID = 0;
+    private static String TAG = "ScheduleActivity";
 
     private ItemAdapter adapter;
-    private BaseActivity.ScheduleType type;
-    private BaseActivity.ScheduleMode mode;
+    private ScheduleType type;
+    private ScheduleMode mode;
     private int id;
-    private String name;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
 
-        type = (BaseActivity.ScheduleType) getIntent().getSerializableExtra(ARG_TYPE);
-        mode = (BaseActivity.ScheduleMode) getIntent().getSerializableExtra(ARG_MODE);
+        type = (ScheduleType) getIntent().getSerializableExtra(ARG_TYPE);
+        mode = (ScheduleMode) getIntent().getSerializableExtra(ARG_MODE);
         id = getIntent().getIntExtra(ARG_ID, DEFAULT_ID);
-        name = getIntent().getStringExtra(ARG_NAME);
+        String name = getIntent().getStringExtra(ARG_NAME);
 
         TextView title = findViewById(R.id.title);
         title.setText(name);
@@ -54,14 +56,22 @@ public class ScheduleActivity extends BaseActivity {
         adapter = new ItemAdapter(this::onScheduleItemClick);
         recyclerView.setAdapter(adapter);
 
-        filterItem();
+        initTimetableObserver();
     }
 
-    private void onScheduleItemClick(ScheduleItem scheduleItem) {
-        ;
+    private void onScheduleItemClick(ScheduleItem scheduleItem) { }
+
+    protected void initTimetableObserver(){
+        Observer<Date> observer = new Observer<Date>(){
+            @Override
+            public void onChanged(Date date) {
+                filterItem(date);
+            }
+        };
+        mainViewModel.getDateTime().observe(this, observer);
     }
 
-    private void filterItem() {
+    private void filterItem(Date dateTime) {
 
         Observer<? super List<FullTimeTableEntity>> observer = (Observer<List<FullTimeTableEntity>>) list -> {
 
@@ -93,10 +103,10 @@ public class ScheduleActivity extends BaseActivity {
         };
 
         if (mode == ScheduleMode.STUDENT) {
-            mainViewModel.getTimetableByGroupId(id, type, currentTime).observe(this, observer);
+            mainViewModel.getTimetableByGroupId(id, type, dateTime).observe(this, observer);
         }
         if (mode == ScheduleMode.PROFESSOR) {
-            mainViewModel.getTimetableByTeacherId(id, type, currentTime).observe(this, observer);
+            mainViewModel.getTimetableByTeacherId(id, type, dateTime).observe(this, observer);
         }
     }
 

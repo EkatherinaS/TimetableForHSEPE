@@ -40,12 +40,6 @@ public class Converters {
         return WordUtils.capitalize(simpleDateFormat.format(date));
     }
 
-    public static String dateToWeekdayFormat(Date date) {
-        SimpleDateFormat simpleDateFormat =
-            new SimpleDateFormat("EEEE", Locale.forLanguageTag("ru"));
-        return simpleDateFormat.format(date);
-    }
-
     public static String dateToTimeFormat(Date date) {
         SimpleDateFormat simpleDateFormat =
                 new SimpleDateFormat("HH:mm", Locale.forLanguageTag("ru"));

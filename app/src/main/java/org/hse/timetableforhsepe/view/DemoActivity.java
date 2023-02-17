@@ -75,7 +75,7 @@ public class DemoActivity extends ActionBarActivity {
     private void clickButton2() {
         String numberVal = number.getText().toString();
         if (numberVal.isEmpty()) { numberVal = "0"; }
-        if((numberVal.toString()).length() > 2) {
+        if((numberVal).length() > 2) {
             Toast.makeText(DemoActivity.this, R.string.demo_activity_warning_2, Toast.LENGTH_LONG).show();
         }
         else {

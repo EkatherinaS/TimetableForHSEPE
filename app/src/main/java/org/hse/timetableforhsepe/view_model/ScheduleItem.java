@@ -1,10 +1,6 @@
 package org.hse.timetableforhsepe.view_model;
 
 import android.app.Application;
-import android.content.Context;
-import android.content.res.Resources;
-
-import org.hse.timetableforhsepe.R;
 import org.hse.timetableforhsepe.model.Converters;
 import org.hse.timetableforhsepe.model.FullTimeTableEntity;
 import org.hse.timetableforhsepe.view.BaseActivity;

@@ -48,9 +48,8 @@ public class TeacherActivity extends BaseActivity {
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View itemSelected, int selectedItemPosition, long selectedId) {
-                Object item = adapter.getItem(selectedItemPosition);
-                initTime();
-                Log.d(TAG, "selectedItem: " + item);
+                Log.d(TAG, "selectedItem: " + adapter.getItem(selectedItemPosition));
+                showTime(dateTime);
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
@@ -100,8 +99,11 @@ public class TeacherActivity extends BaseActivity {
                     Log.d(TAG, list.get(0).timeTableEntity.subName + " " + list.get(0).groupEntity.name);
                     initDataFromTimeTable(list.get(0));
                 }
+                else {
+                    initDataFromTimeTable(null);
+                }
             };
-            mainViewModel.getLessonByTeacherId(getSelectedItem().getId(), currentTime).observe(this, observer);
+            mainViewModel.getLessonByTeacherId(getSelectedItem().getId(), dateTime).observe(this, observer);
         }
     }
 

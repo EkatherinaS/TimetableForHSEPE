@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import org.hse.timetableforhsepe.R;
-import org.hse.timetableforhsepe.view_model.HseDao;
-import org.hse.timetableforhsepe.view_model.HseRepository;
 
 public class MainActivity extends AppCompatActivity {
 

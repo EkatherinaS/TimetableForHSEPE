@@ -13,7 +13,6 @@ import org.hse.timetableforhsepe.model.FullTimeTableEntity;
 import org.hse.timetableforhsepe.model.GroupEntity;
 import org.hse.timetableforhsepe.R;
 import org.hse.timetableforhsepe.model.TimeTableEntity;
-import org.hse.timetableforhsepe.model.TimeTableWithTeacherEntity;
 import org.hse.timetableforhsepe.view_model.Item;
 
 import java.util.ArrayList;
@@ -49,7 +48,7 @@ public class StudentActivity extends BaseActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View itemSelected, int selectedItemPosition, long selectedId) {
                 Object item = adapter.getItem(selectedItemPosition);
-                initTime();
+                showTime(dateTime);
                 Log.d(TAG, "selectedItem: " + item);
             }
 
@@ -100,9 +99,13 @@ public class StudentActivity extends BaseActivity {
                     Log.d(TAG, list.get(0).timeTableEntity.subName + " " + list.get(0).teacherEntity.fio);
                     initDataFromTimeTable(list.get(0));
                 }
+                else {
+                    initDataFromTimeTable(null);
+                }
             };
-            mainViewModel.getLessonByGroupId(getSelectedItem().getId(), currentTime).observe(this, observer);
+            mainViewModel.getLessonByGroupId(getSelectedItem().getId(), dateTime).observe(this, observer);
         }
+        Log.i(TAG, "showTime: " + dateTime);
     }
 
     private Item getSelectedItem() {

@@ -1,10 +1,9 @@
 package org.hse.timetableforhsepe.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
@@ -14,13 +13,13 @@ import org.hse.timetableforhsepe.model.Converters;
 import org.hse.timetableforhsepe.view_model.Item;
 import org.hse.timetableforhsepe.view_model.MainViewModel;
 import java.util.Date;
-import java.util.Objects;
 
 public abstract class BaseActivity extends ActionBarActivity {
 
     protected TextView time;
     protected MainViewModel mainViewModel;
-    public Date currentTime;
+    private String TAG = "BaseActivity";
+    protected Date dateTime;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,18 +31,19 @@ public abstract class BaseActivity extends ActionBarActivity {
         Observer<Date> observer = new Observer<Date>(){
             @Override
             public void onChanged(Date date) {
+                dateTime = date;
                 showTime(date);
+                Log.i(TAG, "initTime: " + date);
             }
         };
-        mainViewModel.getDate().observe(this, observer);
+        mainViewModel.getDateTime().observe(this, observer);
     }
 
     protected void showTime(Date dateTime) {
         if (dateTime == null) {
             return;
         }
-        currentTime = dateTime;
-        time.setText(Converters.dateToSimpleFormat(currentTime));
+        time.setText(Converters.dateToSimpleFormat(dateTime));
     }
 
 

@@ -1,43 +1,29 @@
 package org.hse.timetableforhsepe.view_model;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
-
-import com.google.gson.Gson;
-
-import org.hse.timetableforhsepe.model.Converters;
 import org.hse.timetableforhsepe.model.FullTimeTableEntity;
 import org.hse.timetableforhsepe.model.GroupEntity;
 import org.hse.timetableforhsepe.model.RequestBuilder;
 import org.hse.timetableforhsepe.model.TeacherEntity;
-import org.hse.timetableforhsepe.model.TimeTableWithGroupEntity;
-import org.hse.timetableforhsepe.model.TimeTableWithTeacherEntity;
 import org.hse.timetableforhsepe.view.BaseActivity;
 
-import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import java.*;
-
-import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 public class HseRepository {
 
     private DatabaseManager databaseManager;
-    private HseDao dao;
+    private RequestBuilder requestBuilder;
+    private final HseDao dao;
     private Date dayStart;
     private Date dayEnd;
 
@@ -74,6 +60,7 @@ public class HseRepository {
 
     public HseRepository(Context context) {
         databaseManager = DatabaseManager.getInstance(context);
+        requestBuilder = RequestBuilder.getInstance();
         dao = databaseManager.getHseDao();
     }
 
@@ -95,10 +82,6 @@ public class HseRepository {
         return dao.getLessonByTeacherId(teacherId, currentTime);
     }
 
-    public LiveData<List<FullTimeTableEntity>> getTimetable() {
-        return dao.getAllTimeTable();
-    }
-
     public LiveData<List<GroupEntity>> getGroups() {
         return dao.getAllGroup();
     }
@@ -107,15 +90,7 @@ public class HseRepository {
         return dao.getAllTeacher();
     }
 
-    public LiveData<List<TimeTableWithTeacherEntity>> getTimeTableWithTeacherByDate() {
-        return dao.getTimeTableTeacher();
-    }
-
-    public LiveData<List<TimeTableWithGroupEntity>> getTimeTableWithGroupByDate() {
-        return dao.getTimeTableGroup();
-    }
-
-    public void getTime(Callback callback) {
-        RequestBuilder.getDate(callback);
+    public void getDateTime(Callback callback) {
+        requestBuilder.getDateTime(callback);
     }
 }

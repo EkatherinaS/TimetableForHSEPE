@@ -22,7 +22,7 @@ import java.util.concurrent.Executors;
 
 public class DatabaseManager {
 
-    private DatabaseHelper db;
+    private final DatabaseHelper db;
 
     private static DatabaseManager instance;
 
@@ -87,8 +87,8 @@ public class DatabaseManager {
         timeTable.subName = "Философия";
         timeTable.corp = "К1";
         timeTable.type = 0;
-        timeTable.timeStart = dateFromString("2023-02-12 19:00");
-        timeTable.timeEnd = dateFromString("2023-02-12 22:00");
+        timeTable.timeStart = dateFromString("2023-02-17 15:00");
+        timeTable.timeEnd = dateFromString("2023-02-17 23:59");
         timeTable.groupId = 1;
         timeTable.teacherId = 1;
         timeTables.add(timeTable);
@@ -99,8 +99,8 @@ public class DatabaseManager {
         timeTable.subName = "Мобильная разработка";
         timeTable.corp = "К1";
         timeTable.type = 0;
-        timeTable.timeStart = dateFromString("2023-02-12 00:00");
-        timeTable.timeEnd = dateFromString("2023-02-12 1:00");
+        timeTable.timeStart = dateFromString("2023-02-17 13:00");
+        timeTable.timeEnd = dateFromString("2023-02-17 18:00");
         timeTable.groupId = 2;
         timeTable.teacherId = 2;
         timeTables.add(timeTable);
@@ -111,8 +111,8 @@ public class DatabaseManager {
         timeTable.subName = "Мобильная разработка";
         timeTable.corp = "К1";
         timeTable.type = 0;
-        timeTable.timeStart = dateFromString("2023-02-11 20:00");
-        timeTable.timeEnd = dateFromString("2023-02-11 21:20");
+        timeTable.timeStart = dateFromString("2023-02-18 20:00");
+        timeTable.timeEnd = dateFromString("2023-02-18 21:20");
         timeTable.groupId = 2;
         timeTable.teacherId = 2;
         timeTables.add(timeTable);
@@ -123,8 +123,8 @@ public class DatabaseManager {
         timeTable.subName = "Мобильная разработка";
         timeTable.corp = "К1";
         timeTable.type = 0;
-        timeTable.timeStart = dateFromString("2023-02-12 15:00");
-        timeTable.timeEnd = dateFromString("2023-02-12 18:00");
+        timeTable.timeStart = dateFromString("2023-02-18 15:00");
+        timeTable.timeEnd = dateFromString("2023-02-18 18:00");
         timeTable.groupId = 2;
         timeTable.teacherId = 2;
         timeTables.add(timeTable);

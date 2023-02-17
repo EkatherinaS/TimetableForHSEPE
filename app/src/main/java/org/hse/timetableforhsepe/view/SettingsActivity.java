@@ -31,6 +31,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
@@ -41,7 +42,6 @@ import org.hse.timetableforhsepe.R;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -128,8 +128,8 @@ public class SettingsActivity extends ActionBarActivity implements SensorEventLi
 
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                           int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         String PERMISSION = Manifest.permission.CAMERA;
         if (ActivityCompat.checkSelfPermission(this, PERMISSION) ==
@@ -218,8 +218,6 @@ public class SettingsActivity extends ActionBarActivity implements SensorEventLi
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
-
-
 
 
     private void dispatchTakePictureIntent() {
